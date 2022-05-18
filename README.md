@@ -1,2 +1,2 @@
 # common_useful_python_functions
-This Repository contains very common and useful functions in day to day python programming workflows. These are usually very simple functions but save a lot of time if we already have them instead of writing from scratch.
+This Repository contains very common and useful functions in day to day python programming workflows. These are usually very simple functions but save a lot of time if we already have them instead of writing from scratch.These Functions are not specific to any concepts, tools like machine-learning/Deep-Learning/Data-Mining rather these are very common functions that we may use in any type python Development/coding activity.
