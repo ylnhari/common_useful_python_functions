@@ -20,3 +20,18 @@ def progress_bar_for_your_loop():
   for i in tqdm(any_range_you_want, desc ="Text to be displayed beside progress bar"):
     """write your code"""
     pass
+
+ def str2bool(string_value):
+    """
+    Convert a String to a boolean value.
+
+    Parameters
+    ----------
+    string_value : string_value
+        a python string object
+
+    Returns
+    -------
+        boolean value
+    """
+    return string_value.lower() in ("yes", "true", "t", "1")
