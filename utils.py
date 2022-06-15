@@ -122,32 +122,31 @@ def get_latitude_longitude_from_address_with_exception_handling(addresses):
   import pandas as pd
   from tqdm import tqdm
   name_of_the_file_to_save = "your_file_name.csv"
-  if run_this_cell:
-      # Fetch any existing processed records
-      if Path(name_of_the_file_to_save).exists():
-          # read already fetched files
-          location_coordinates_df = pd.read_csv(name_of_the_file_to_save)
-          # create dataframe of fetched locations
-          locations_already_processed = location_coordinates_df["Name"].to_list()
-      else: # if there are no  pre fetched locations
-          # create empty data frame to fetch locations
-          locations_already_processed = []
-          location_coordinates_df = pd.DataFrame(columns = ['Name', 'latitude', 'longitude'])
+  # Fetch any existing processed records
+  if Path(name_of_the_file_to_save).exists():
+      # read already fetched files
+      location_coordinates_df = pd.read_csv(name_of_the_file_to_save)
+      # create dataframe of fetched locations
+      locations_already_processed = location_coordinates_df["Name"].to_list()
+  else: # if there are no  pre fetched locations
+      # create empty data frame to fetch locations
+      locations_already_processed = []
+      location_coordinates_df = pd.DataFrame(columns = ['Name', 'latitude', 'longitude'])
 
-      # Fetch Location Coordinates
-      try:
-          for location_address in tqdm(addresses): # for every location
-              if location_address not in locations_already_processed: # if it is not pre fetched
-                  latitude, longitude = get_latitude_logitude(location_address) # get coordinates
-                  # append coordinates to dataframe
-                  location_coordinates_df = location_coordinates_df.append({'Name' : location_address, 'latitude' : latitude, 'longitude' : longitude},
-                                                                          ignore_index = True)
-                  locations_already_processed.append(location_address)
-          print("All addresses fetched successfully !!!")
-      except Exception as e: # if error occured while calling Google API
-          print(f"Error Occured While Processing address {location_address}")
-          print(f"Error : {e}")
-      finally:
-          # Finally Save File
-          location_coordinates_df.to_csv(name_of_the_file_to_save, index=False)
-          print(f"Fetched Coordinates saved to file {name_of_the_file_to_save}")
+  # Fetch Location Coordinates
+  try:
+      for location_address in tqdm(addresses): # for every location
+          if location_address not in locations_already_processed: # if it is not pre fetched
+              latitude, longitude = get_latitude_logitude(location_address) # get coordinates
+              # append coordinates to dataframe
+              location_coordinates_df = location_coordinates_df.append({'Name' : location_address, 'latitude' : latitude, 'longitude' : longitude},
+                                                                      ignore_index = True)
+              locations_already_processed.append(location_address)
+      print("All addresses fetched successfully !!!")
+  except Exception as e: # if error occured while calling Google API
+      print(f"Error Occured While Processing address {location_address}")
+      print(f"Error : {e}")
+  finally:
+      # Finally Save File
+      location_coordinates_df.to_csv(name_of_the_file_to_save, index=False)
+      print(f"Fetched Coordinates saved to file {name_of_the_file_to_save}")
