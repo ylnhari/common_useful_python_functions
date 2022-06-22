@@ -150,3 +150,13 @@ def get_latitude_longitude_from_address_with_exception_handling(addresses):
       # Finally Save File
       location_coordinates_df.to_csv(name_of_the_file_to_save, index=False)
       print(f"Fetched Coordinates saved to file {name_of_the_file_to_save}")
+      
+      
+def get_curr_date_and_time():
+    """
+        Function to fetch current date and time
+        return(str):
+            data and time as a string
+    """
+    from datetime import datetime, date
+    return date.today().strftime("%d/%m/%Y") + " " + datetime.now().strftime("%H:%M:%S")
