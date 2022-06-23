@@ -160,3 +160,17 @@ def get_curr_date_and_time():
     """
     from datetime import datetime, date
     return date.today().strftime("%d/%m/%Y") + " " + datetime.now().strftime("%H:%M:%S")
+ 
+def check_if_a_string_is_substring_of_a_bigger_string(sub_string, main_string):
+  """Function checks if a substring is actually part of main string (discarding the letter case)
+  Parameters
+  ----------
+    sub_string : (str) smaller string
+    main_string : (str) Main string
+  Return
+  ------
+    boolean (True or False)
+  """
+  
+   if len(main_string.lower().split(sub_string.lower().strip())) > 1:
+      return True
