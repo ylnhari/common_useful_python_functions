@@ -69,4 +69,57 @@ def get_numerical_columns(df):
     # append rows to data frame by using index -> df.loc[index_value]  = [list of column values] or pandas series of values (whose length must be the number of columns)
     # insert a value into a cell -> df.loc[index_value, column_name] = value
     # create new column into the dataframe -> df[new_column_name] = [list of column values] or pandas series of values (whose length must be the number rows of dataframe)
-        
+
+def check_for_null_values_remove_from_dataframe(df):
+    """
+      Check dataframe columns or rows containing null values in them and remove them 
+      -> atleast one null values in rows
+      -> all values of a row are null
+      -> atleast one null value in columns
+      -> all values in the column are null
+     Parameters
+     ----------
+      df : (pandas dataframe)
+    """
+    # atleast one null values in rows
+    rows_with_atleast_one_null_value = df.isnull().any(axis=1)
+    # remove rows with atleast one null value
+    d = d[~rows_with_atleast_one_null_value]
+    
+    # all values of a row are null
+    rows_with_all_null_values = df.isnull().all(axis=1)
+    # remove rows with all null values
+    df = df[~rows_with_all_null_values]
+    
+    # atleast one null value in columns
+    columns_with_atleast_one_null_value = df.isnull().any(axis= 0)
+    # remove columns with atleast one numm value in them
+    df = df.loc[:,~columns_with_atleast_one_null_value]
+    
+    # all values in the column are null
+    columns_with_all_null_values = df.isnull().all(axis= 0)
+    # remove columns with all null values
+    df = df.loc[:,~columns_with_all_null_values]
+    
+    
+def change_datatype_of_a_df_column(df, col_name, dtype_string):
+  """Change the Column  dtype.
+  
+  supported dtype_strings are:- 'category', 'boolean','string','object','int', 'float', 'datetime64[ns, <tz>]', period[<freq>]',
+  'Sparse', 'Sparse[int]', 'Sparse[float]', 'interval', 'Interval', 'Interval[<numpy_dtype>]', 'Interval[datetime64[ns, <tz>]]', 
+  'Interval[timedelta64[<freq>]]', 'Int8', 'Int16', 'Int32', 'Int64', 'UInt8', 'UInt16', 'UInt32', 'UInt64', 'Int8', 'Int16', 'Int32', 
+  'Int64', 'UInt8', 'UInt16', 'UInt32', 'UInt64' 
+  
+  Parameters
+  ----------
+    df : (pandas dataframe)
+    col_name : (str) name of the column
+    dtype_string : (str) Name of the string identified of pandas supported datatype
+    
+  have a look at :- https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes
+  """
+    df[col_name] = df[col_name].astype(dtype_string)
+    # exanple :- convert Data type of Column to integer
+    #            df[col_name] = df[col_name].astype("int")
+    return df
+    
