@@ -123,3 +123,8 @@ def change_datatype_of_a_df_column(df, col_name, dtype_string):
     #            df[col_name] = df[col_name].astype("int")
     return df
     
+def set_pandas_options():
+  pd.set_option("display.max_rows", None) # show all rows in a jupyter cell.
+  pd.set_option("display.max_columns", None) # show all columns in a jupyter cell.
+  pd.set_option("display.max_colwidth", None) # show all data in a cell of dataframe.
+
