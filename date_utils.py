@@ -7,7 +7,18 @@ def get_curr_date_and_time():
             data and time as a string
     """
     from datetime import datetime, date
-    return date.today().strftime("%d/%m/%Y") + " " + datetime.now().strftime("%H:%M:%S")
+    return date.today().strftime("%d/%m/%Y") + " " + datetime.now().strftime("%H:%M:%S") # here we fetched date and time seperately
+    
+    # also we can use the following code to generate date in different formats.
+    # datetime object containing current date and time
+    now = datetime.now()
+    # dd/mm/YY H:M:S
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    print("date and time =", dt_string)
+    
+    # dd-mm-YY_H:M:S
+    dt_string = now.strftime("%d-%m-%Y_%H:%M:%S")
+    print("date and time =", dt_string)
 
 
 def get_time_difference_from_a_start_date(pandas_series, start_date):
