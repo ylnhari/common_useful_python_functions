@@ -1,5 +1,14 @@
 """Date Utility Functions."""
 
+def get_curr_date_and_time():
+    """
+        Function to fetch current date and time
+        return(str):
+            data and time as a string
+    """
+    from datetime import datetime, date
+    return date.today().strftime("%d/%m/%Y") + " " + datetime.now().strftime("%H:%M:%S")
+
 
 def get_time_difference_from_a_start_date(pandas_series, start_date):
     """
