@@ -83,6 +83,7 @@ def check_for_null_values_remove_from_dataframe(df):
     """
     # atleast one null values in rows
     rows_with_atleast_one_null_value = df.isnull().any(axis=1)
+    print(f"Row index labels with atleaset one null value - {df.loc[rows_with_atleast_one_null_value].index.to_list()}")
     # remove rows with atleast one null value
     d = d[~rows_with_atleast_one_null_value]
     
@@ -93,6 +94,7 @@ def check_for_null_values_remove_from_dataframe(df):
     
     # atleast one null value in columns
     columns_with_atleast_one_null_value = df.isnull().any(axis= 0)
+    print(f"Columns with atleaset one null value - {[i for i in columns_with_atleast_one_null_value.index if a[i]]}")
     # remove columns with atleast one numm value in them
     df = df.loc[:,~columns_with_atleast_one_null_value]
     
