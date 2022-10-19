@@ -46,7 +46,7 @@ def convert_pandas_col_to_datetime (df, col_name):
     return df
 
 
-def add_minutes_to_pandas_col(df, col_name, no_of_min):
+def add_or_subtract_minutes_days_hours_seconds_to_pandas_col(df, col_name, no_of_min):
     """Add/Subtract minutes/hours/seconds from a datetime column
     Parameters
         df (pandas.DataFrame object): dataframe with date column in it
@@ -56,4 +56,7 @@ def add_minutes_to_pandas_col(df, col_name, no_of_min):
     """
     minutes = pd.Timedelta (no_of_min, unit 'minutes') # similarly we can do it for seconds, hours (subraction). 
     df[col_name] = (df[col_name]) - minutes
+    days = timedelta(days = 730)
+    df[col_name] = (df[col_name]) - days
+    # we can also use pd.DateOffset(days=180)
     return df
