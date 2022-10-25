@@ -33,6 +33,14 @@ def convert_datetime_to_string(datetime_object, format):
     # an example of format -> "%Y-%m-%d"
     return datetime_object.strftime(format)
 
+def get_week_start_end_dates(weekdate):
+    # weekdate must be an object of datetime.datetime
+    week_start = curr_date - timedelta(days=weekdate.weekday())
+    print(week_start)
+    week_end = curr_date + timedelta(days=7 - weekdate.weekday())
+    print(week_end)
+    return week_start, week_end
+
 def get_time_difference_from_a_start_date(pandas_series, start_date):
     """
     Parameters
