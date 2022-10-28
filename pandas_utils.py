@@ -22,8 +22,28 @@ def check_if_pandas_column_has_only_alphanumeric_values(data_frame):
   for column in columns_to_check_for_alphanumeric:
     if data_frame[column].apply(lambda x : x.isalnum()).any():
       print(f"Some Rows of Column {column} have invalid values")
-
-
+      
+      
+def filter_multilabelIndex_dataframe_based_different_index_levels():
+  """
+  Assume the dataframe to be having 4 levels in the index
+  dataframe
+  index : A, B, C, D
+  columns : E, F
+  now if you want to get rows where A == 0 and D == 111 then use the following statement
+    
+    df.loc[(0,slice(None),slice(None),111)] -> this returns dataframe
+    
+   Similarly if you  want to access cell value in column 'E' for the same
+    
+     df.loc[(0,slice(None),slice(None),111), 'E']  -> this returns value in the cell as numpy object
+    
+   slice(None) -> use this if you want all rows for a level of index 
+  
+  """
+  return df_time.loc[(0,slice(None),slice(None),111)]
+  
+  
 def get_categorical_columns(df):
   """
     Parameters
