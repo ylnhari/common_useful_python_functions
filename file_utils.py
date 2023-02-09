@@ -13,7 +13,7 @@ def list_only_file_name_and_path_under_a_path(path: pathlib.Path) -> dict:
   """Under a Directory we will iterate through all directories, files and get all file 
   names and their full paths as a dictionary where key is file name and value as file path.
   """
-  files = {x.name: x for x inpath.iterdir() if x.is_file()}
+  files = {x.name: x for x path.iterdir() if x.is_file()}
   return files
 
 def save_xls(dict_df, path):
