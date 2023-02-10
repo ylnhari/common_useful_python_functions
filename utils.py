@@ -10,21 +10,44 @@ def progress_bar_for_your_loop():
   for i in tqdm(any_range_you_want, desc ="Text to be displayed beside progress bar"):
     """write your code"""
     pass
+  
+  
+def custom_progress_bar(current_value: Union[int, float], total_value: Union[int, float]):
+  """This Function can be used as call back function where an activity returns
+  current value and total value to be completed so that we can calculate percentage of
+  completion and display a progress bar.
+  
+  For example you could be uploading a file to some cloud storage and if file size is huge you 
+  can you this function as call back function if the upload method has one such call back method.
+    -> in azure if you want to upload a blob file and you if you want to display the progress bar this
+       is how you could use this function
+       
+       blob_client.upload_blob(data, progress_hook=custom_progress_bar) 
+       Here progress_hook will call custom_progress_bar with two parameters
+       1) uploaded file size in Bytes 2) Total size of the file in Bytes
+  
+  """
+  bar_total_length = 20
+  percentage_completed = int((current_value*100) / total_value)
+  current_bar_length = int(percentage_completed * bar_total_length / 100)
+  progress_bar = '|' + '#'*current_bar_length + '|' + str(percentage_completed) + '% Completed' 
+  print('\r' + progress_bar, end='', flush=True)
+  
+  
+def str2bool(string_value):
+  """
+  Convert a String to a boolean value.
 
- def str2bool(string_value):
-    """
-    Convert a String to a boolean value.
+  Parameters
+  ----------
+  string_value : string_value
+      a python string object
 
-    Parameters
-    ----------
-    string_value : string_value
-        a python string object
-
-    Returns
-    -------
-        boolean value
-    """
-    return string_value.lower() in ("yes", "true", "t", "1")
+  Returns
+  -------
+      boolean value
+  """
+  return string_value.lower() in ("yes", "true", "t", "1")
 
 def send_message_to_slack():
   """
